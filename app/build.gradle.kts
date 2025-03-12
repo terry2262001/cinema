@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    val leanback_version = "1.2.0-alpha04"
+    val leanback_version = "1.0.0"
     implementation("androidx.leanback:leanback:$leanback_version")
     implementation("androidx.leanback:leanback-preference:$leanback_version")
     implementation("com.google.code.gson:gson:2.10.1")

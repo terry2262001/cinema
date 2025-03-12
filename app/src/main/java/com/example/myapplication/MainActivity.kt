@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.BrowseFrameLayout
-import com.example.myapplication.R
 import com.example.myapplication.utils.Common
 import com.example.myapplication.utils.Constants
 
@@ -84,42 +83,6 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
                 lastSelectedMenu.isActivated = false
                 view?.isActivated = true
                 lastSelectedMenu = view!!
-
-//                when (view.id) {
-////                    R.id.btn_search -> {
-////                        selectedMenu = Constants.MENU_SEARCH
-////                        changeFragment(SearchFragment())
-////                    }
-//                    R.id.btn_home -> {
-//                        selectedMenu = Constants.MENU_HOME
-//                        changeFragment(HomeFragment())
-//                    }
-////                    R.id.btn_tv -> {
-////                        selectedMenu = Constants.MENU_TV
-////                        changeFragment(TvShowFragment())
-////                    }
-////                    R.id.btn_movies -> {
-////                        selectedMenu = Constants.MENU_MOVIE
-////                        changeFragment(MovieFragment())
-////                    }
-////                    R.id.btn_sports -> {
-////                        selectedMenu = Constants.MENU_SPORTS
-////                        changeFragment(SportsFragment())
-////                    }
-////                    R.id.btn_settings -> {
-////                        selectedMenu = Constants.MENU_SETTINGS
-////                        changeFragment(SettingsFragment())
-////                    }
-////                    R.id.btn_language -> {
-////                        selectedMenu = Constants.MENU_LANGUAGE
-////                        changeFragment(LanguageFragment())
-////                    }
-////                    R.id.btn_genre -> {
-////                        selectedMenu = Constants.MENU_GENRES
-////                        changeFragment(GenresFragment())
-////                    }
-//                }
-
             }
 
             KeyEvent.KEYCODE_DPAD_LEFT -> {
@@ -131,7 +94,7 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
                 }
             }
         }
-        return true
+        return false
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -183,7 +146,7 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
     fun openMenu() {
 //        val animSlide : Animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_left)
 //        navBar.startAnimation(animSlide)
-        navBar.visibility = View.VISIBLE
+
         navBar.requestLayout()
         navBar.layoutParams.width = Common.getWidthPercent(this, 16)
     }

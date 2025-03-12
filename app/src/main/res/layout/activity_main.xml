@@ -14,7 +14,7 @@
 
     <androidx.leanback.widget.BrowseFrameLayout
         android:id="@+id/blfNavBar"
-        android:layout_width="20dp"
+        android:layout_width="50dp"
         android:layout_height="match_parent"
         android:background="#000000"
         android:nextFocusLeft="@id/container">

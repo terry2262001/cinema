@@ -73,6 +73,6 @@ class HomeFragment : Fragment() {
 
 
         val url = "https://www.themoviedb.org/t/p/w780" + dataList.backdrop_path
-        Glide.with(this).load(url).placeholder(R.drawable.ic_language).into(imgBanner)
+        Glide.with(this).load(url).placeholder(R.drawable.ic_circle).into(imgBanner)
     }
 }

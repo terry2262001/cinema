@@ -39,11 +39,10 @@ class ItemPresenter: Presenter() {
         val url = "https://www.themoviedb.org/t/p/w500" + content?.poster_path
         Glide.with(viewHolder?.view?.context!!)
             .load(url)
-            .placeholder(R.drawable.ic_language)
+            .placeholder(R.drawable.ic_circle)
             .into(imageview!!)
     }
 
     override fun onUnbindViewHolder(viewHolder: ViewHolder) {
-        TODO("Not yet implemented")
     }
 }
