@@ -1,14 +1,21 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.BrowseFrameLayout
+import com.example.myapplication.fragment.LanguageFragment
+import com.example.myapplication.fragment.MoviesFragment
+import com.example.myapplication.fragment.SearchFragment
+import com.example.myapplication.fragment.SettingFragment
+import com.example.myapplication.fragment.SportsFragment
+import com.example.myapplication.fragment.TVShowFragment
 import com.example.myapplication.utils.Common
 import com.example.myapplication.utils.Constants
 
@@ -62,6 +69,10 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
         btnSports.setOnKeyListener(this)
         btnSetting.setOnKeyListener(this)
         btnLanguage.setOnKeyListener(this)
+        firstSelectedMenu()
+    }
+
+    fun firstSelectedMenu() {
         lastSelectedMenu = btnHome
         lastSelectedMenu.isActivated = true
         changeFragment(HomeFragment())
@@ -71,35 +82,70 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)
         transaction.commit()
-
         closeMenu()
     }
 
     override fun onKey(view: View?, i: Int, key_event: KeyEvent?): Boolean {
-        Log.d("tho123123",key_event.toString())
         when (i) {
             KeyEvent.KEYCODE_DPAD_CENTER -> {
 
                 lastSelectedMenu.isActivated = false
                 view?.isActivated = true
                 lastSelectedMenu = view!!
+
+                when (view.id) {
+                    R.id.btn_search -> {
+                        selectedMenu = Constants.MENU_SEARCH
+                        changeFragment(SearchFragment())
+                    }
+
+                    R.id.btn_home -> {
+                        selectedMenu = Constants.MENU_HOME
+                        changeFragment(HomeFragment())
+                    }
+
+                    R.id.btn_tv -> {
+                        selectedMenu = Constants.MENU_TV
+                        changeFragment(TVShowFragment())
+                    }
+
+                    R.id.btn_movies -> {
+                        selectedMenu = Constants.MENU_MOVIE
+                        changeFragment(MoviesFragment())
+                    }
+
+                    R.id.btn_sports -> {
+                        selectedMenu = Constants.MENU_SPORTS
+                        changeFragment(SportsFragment())
+                    }
+
+                    R.id.btn_settings -> {
+                        selectedMenu = Constants.MENU_SETTINGS
+                        changeFragment(SettingFragment())
+                    }
+
+                    R.id.btn_language -> {
+                        selectedMenu = Constants.MENU_LANGUAGE
+                        changeFragment(LanguageFragment())
+                    }
+                }
             }
 
             KeyEvent.KEYCODE_DPAD_LEFT -> {
                 if (!SIDE_MENU) {
                     switchToLastSelectedMenu()
-
                     openMenu()
                     SIDE_MENU = true
                 }
+            }
+            else -> {
+                lastSelectedMenu.isActivated = false
             }
         }
         return false
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-
-        Log.d("tho123123", "onKeyDown: $keyCode, currentFocus=${currentFocus?.javaClass?.simpleName}")
         if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && SIDE_MENU) {
             SIDE_MENU = false
             closeMenu()
@@ -144,9 +190,8 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
     }
 
     fun openMenu() {
-//        val animSlide : Animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_left)
-//        navBar.startAnimation(animSlide)
-
+        val animSlide : Animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_left)
+        navBar.startAnimation(animSlide)
         navBar.requestLayout()
         navBar.layoutParams.width = Common.getWidthPercent(this, 16)
     }
