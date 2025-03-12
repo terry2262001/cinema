@@ -39,6 +39,7 @@ class ItemPresenter: Presenter() {
         val url = "https://www.themoviedb.org/t/p/w500" + content?.poster_path
         Glide.with(viewHolder?.view?.context!!)
             .load(url)
+            .placeholder(R.drawable.ic_language)
             .into(imageview!!)
     }
 
