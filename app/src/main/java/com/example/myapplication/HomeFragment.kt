@@ -64,6 +64,9 @@ class HomeFragment : Fragment() {
         listFragment.setOnContentSelectedListener {
             updateBanner(it)
         }
+        listFragment.setOnItemClickListener {
+
+        }
 
     }
 

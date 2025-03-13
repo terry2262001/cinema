@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.leanback.app.RowsSupportFragment
@@ -13,6 +14,9 @@ import androidx.leanback.widget.OnItemViewSelectedListener
 import androidx.leanback.widget.Presenter
 import androidx.leanback.widget.Row
 import androidx.leanback.widget.RowPresenter
+import com.example.myapplication.models.CastResponse
+import com.example.myapplication.presenter.CastItemPresenter
+import com.example.myapplication.presenter.ItemPresenter
 import com.example.tvandmovie.models.DataModel
 
 
@@ -90,6 +94,9 @@ class ListFragment : RowsSupportFragment() {
         ) {
             if (item is DataModel.Result.Detail) {
                 itemClickListener?.invoke(item)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("id", item.id)
+                startActivity(intent)
             }
         }
 
@@ -99,6 +106,17 @@ class ListFragment : RowsSupportFragment() {
         val view = view
         view?.requestFocus()
         return view!!
+    }
+
+    fun bindCastData(casts: List<CastResponse.Cast>) {
+        val arrayObjectAdapter = ArrayObjectAdapter(CastItemPresenter())
+        casts.forEach { content ->
+            arrayObjectAdapter.add(content)
+        }
+        val headerItem = HeaderItem("Cast & Crew")
+        val listRow = ListRow(headerItem, arrayObjectAdapter)
+        rootAdapter.add(listRow)
+
     }
 
 }

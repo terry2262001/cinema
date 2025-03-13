@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.presenter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.leanback.widget.Presenter
 import com.bumptech.glide.Glide
+import com.example.myapplication.R
 import com.example.tvandmovie.models.DataModel
 
 class ItemPresenter: Presenter() {
